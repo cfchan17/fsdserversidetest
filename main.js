@@ -4,6 +4,7 @@ const handlebars = require('express-handlebars')
 const fetch = require('node-fetch')
 const withQuery = require('with-query').default
 const mysql = require('mysql2/promise')
+const morgan = require('morgan')
 
 //create an instance of express app
 const app = express()
@@ -174,6 +175,21 @@ app.get('/:getChar/:pageNum/:bookid/reviews', async (req, resp) => {
 })
 
 //Start the app
-app.listen(PORT, () => {
-    console.info(`App has started on port ${PORT} at ${new Date()}`)
-})
+pool.getConnection()
+    .then(conn => {
+        const p0 = Promise.resolve(conn)
+        const p1 = conn.ping()
+        return Promise.all([p0, p1])
+    })
+    .then(promiseArray => {
+        const conn = promiseArray[0]
+        conn.release()
+        if(API_KEY) {
+            app.listen(PORT, () => {
+                console.info(`App has started on port ${PORT} at ${new Date()}`)
+            })
+        }
+    })
+    .catch(e => {
+        console.error('Cannot start server. Error: ', e)
+    })
