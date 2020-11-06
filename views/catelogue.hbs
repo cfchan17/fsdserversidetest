@@ -10,3 +10,25 @@
     </div>
 </div>
 {{/each}}
+<div class="row mt-5">
+    <div class="col-8">
+        <div class="row">
+            <div class="col-4">
+                {{#if hasPrevPage}}
+                <form action="/{{searchChar}}/{{prevPageNum}}" method="get">
+                    <button type="submit" class="btn btn-warning">Prev</button>
+                </form>
+                {{/if}}
+            </div>
+            <div class="col-4">
+                <div class="d-flex flex-row-reverse">
+                    {{#if hasNextPage}}
+                    <form action="/{{searchChar}}/{{nextPageNum}}" method="get">
+                        <button type="submit" class="btn btn-warning">Next</button>
+                    </form>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

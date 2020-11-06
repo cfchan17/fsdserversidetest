@@ -33,6 +33,7 @@ const pool = mysql.createPool({
 //SQL Queries
 const SQL_GET_TITLES_AND_ID_BY_FIRST_CHAR = 'select book_id, title from book2018 where title like ? order by title asc limit 10 offset ?;'
 const SQL_GET_BOOK_BY_ID = 'select * from book2018 where book_id=?;'
+const SQL_GET_COUNT_BY_FIRST_CHAR = 'select count(*) as count from book2018 where title like ?'
 
 //Application code
 app.get('/', (req, resp) => {
@@ -48,9 +49,23 @@ app.get('/', (req, resp) => {
 
 app.get('/:getChar/:pageNum', async (req, resp) => {
     const searchChar = req.params.getChar
-    const offset = (parseInt(req.params.pageNum) - 1) * 10
+    const pageNum = parseInt(req.params.pageNum)
+    const prevPageNum = pageNum - 1
+    const nextPageNum = pageNum + 1
+    const offset = (pageNum - 1) * 10
     const conn = await pool.getConnection()
     try {
+        const countResult = await conn.query(SQL_GET_COUNT_BY_FIRST_CHAR, `${searchChar.toLowerCase()}%`)
+        const count = parseInt(countResult[0][0].count)
+        const totalPages = Math.ceil(count/10)
+        let hasNextPage = true
+        let hasPrevPage = true
+        if(pageNum == 1) {
+            hasPrevPage = false
+        }
+        if(pageNum == totalPages) {
+            hasNextPage = false
+        }
         const result = await conn.query(SQL_GET_TITLES_AND_ID_BY_FIRST_CHAR, [`${searchChar.toLowerCase()}%`, offset])
         const titles = result[0]
         conn.release()
@@ -60,7 +75,11 @@ app.get('/:getChar/:pageNum', async (req, resp) => {
         resp.render('catelogue', {
             searchChar,
             titles,
-            pageNum: req.params.pageNum
+            pageNum,
+            hasNextPage,
+            hasPrevPage,
+            prevPageNum,
+            nextPageNum
         })
     }
     catch(e) {
@@ -139,7 +158,6 @@ app.get('/:getChar/:pageNum/:bookid/reviews', async (req, resp) => {
         const data = await result.json()
         const copyrightString = data.copyright
         const reviews = data.results
-        console.info(reviews)
         resp.status(200)
         resp.type('text/html')
         resp.render('book_reviews', {
