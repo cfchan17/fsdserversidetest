@@ -10,30 +10,34 @@
                 <td><img src="{{book.image_url}}" alt="book cover" style="max-width: 250px;"></td>
             </tr>
             <tr>
-                <td>Pages: {{book.pages}}</td>
+                <td><span style="font-size: 12px;">Pages: {{book.pages}}</span></td>
             </tr>
             <tr>
-                <td>Rating: {{book.rating}} ({{book.rating_count}})</td>
+                <td><span style="font-size: 12px;">Rating: {{book.rating}} ({{book.rating_count}})</span></td>
             </tr>
             <tr>
-                <td>Genres: {{book.genres}}</td>
+                <td><span style="font-size: 12px;">Genres: {{book.genres}}</span></td>
             </tr>
         </table>
     </div>
     <div class="col-9">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
-                <table>
-                    <tr>
-                        <td><h3>{{book.title}}</h3></td>
-                    </tr>
-                    <tr>
-                        <td>By {{book.authors}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{book.description}}</td>
-                    </tr>
-                </table>
+                <div class="row">
+                    <div class="col">
+                        <h3>{{book.title}}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        By <i>{{book.authors}}</i>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        {{book.description}}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">

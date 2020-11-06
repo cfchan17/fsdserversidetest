@@ -4,7 +4,7 @@
     </div>
 </div>
 {{#each reviews}}
-<div class="row border-bottom mb-3">
+<div class="row border-bottom mb-4">
     <div class="col">
         <div class="row">
             <div class="col">
@@ -13,17 +13,17 @@
         </div>
         <div class="row">
             <div class="col">
-                By {{this.book_author}}
+                By <i>{{this.book_author}}</i>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                Reviewer: {{this.byline}}
+                Reviewer: <i>{{this.byline}}</i>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
-                Date: {{this.publication_dt}}
+                Date: <i>{{this.publication_dt}}</i>
             </div>
         </div>
         <div class="row">
@@ -31,7 +31,7 @@
                 {{this.summary}}
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
                 <div class="d-flex flex-row-reverse">
                     <a href="{{this.url}}" target="__blank">Full Review</a>
@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-center">
-                    {{../copyrightString}}
+                    <span style="font-size: 11px;"><i>{{../copyrightString}}</i></span>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
 <div class="row mt-3">
     <div class="col">
         <div class="d-flex justify-content-center">
-            <h3>No reviews can be found for this book.</h3>
+            <h3>Sorry no reviews were found for this book.</h3>
         </div>
     </div>
 </div>
