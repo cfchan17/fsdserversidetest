@@ -172,7 +172,7 @@ app.get('/:getChar/:pageNum/:bookid/reviews', async (req, resp) => {
         })
     }
     catch(e) {
-        console.error(e)
+        console.error('API Error: ', e)
         resp.status(503)
         resp.type('text/html')
         resp.send('<h3>Service is temporarily unavailable</h3>')
@@ -194,7 +194,10 @@ pool.getConnection()
                 console.info(`App has started on port ${PORT} at ${new Date()}`)
             })
         }
+        else {
+            throw new Error('API_KEY variable is not set')
+        }
     })
     .catch(e => {
-        console.error('Cannot start server. Error: ', e)
+        console.error('Cannot start server: ', e)
     })
