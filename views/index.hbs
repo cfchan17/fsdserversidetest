@@ -1,0 +1,29 @@
+<div class="row mt-5 mb-4">
+    <div class="col">
+        <div class="d-flex justify-content-center">
+            <h3>My Bookstore</h3>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="d-flex flex-wrap justify-content-center">
+            {{#each alphabet}}
+            <form action="/{{this}}/1" method="get" class="mb-3 {{#unless @last}}mr-3{{/unless}}">
+                <button type="submit" class="btn btn-outline-success" style="width:50px;">{{this}}</button>
+            </form>
+            {{/each}}
+        </div>        
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="d-flex flex-wrap justify-content-center">
+            {{#each number}}
+            <form action="/{{this}}/1" method="get" class="mb-3 {{#unless @last}}mr-3{{/unless}}">
+                <button type="submit" class="btn btn-outline-info" style="width:50px;">{{this}}</button>
+            </form>
+            {{/each}}
+        </div>
+    </div>
+</div>

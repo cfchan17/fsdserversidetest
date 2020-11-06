@@ -1,0 +1,53 @@
+{{#each reviews}}
+<div class="row border-bottom mt-3">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <h3>{{this.book_title}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                By {{this.book_author}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Reviewer: {{this.byline}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Date: {{this.publication_dt}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{this.summary}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex flex-row-reverse">
+                    <a href="{{this.url}}" target="__blank">Full Review</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    {{../copyrightString}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="row mt-3">
+    <div class="col">
+        <div class="d-flex justify-content-center">
+            <h3>No reviews can be found for this book.</h3>
+        </div>
+    </div>
+</div>
+{{/each}}

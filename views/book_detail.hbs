@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-3">
+        <table>
+            <tr>
+                <td><img src="{{book.image_url}}" alt="book cover" style="max-width: 250px;"></td>
+            </tr>
+            <tr>
+                <td>Pages: {{book.pages}}</td>
+            </tr>
+            <tr>
+                <td>Rating: {{book.rating}} ({{book.rating_count}})</td>
+            </tr>
+            <tr>
+                <td>Genres: {{book.genres}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-9">
+        <div class="row">
+            <div class="col">
+                <table>
+                    <tr>
+                        <td><h3>{{book.title}}</h3></td>
+                    </tr>
+                    <tr>
+                        <td>By {{book.authors}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{book.description}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex flex-row-reverse">
+                    <a href="/{{searchChar}}/{{pageNum}}/{{book.book_id}}/reviews?title={{book.title}}&author={{book.authors}}">Find Review</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

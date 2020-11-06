@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col">
+        <h3>Titles that starts with "{{searchChar}}"</h3>
+    </div>
+</div>
+{{#each titles}}
+<div class="row">
+    <div class="col">
+        <a href="/{{../searchChar}}/{{../pageNum}}/{{this.book_id}}">{{this.title}}</a>
+    </div>
+</div>
+{{/each}}
