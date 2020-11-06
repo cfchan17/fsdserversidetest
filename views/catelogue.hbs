@@ -9,6 +9,12 @@
         <a href="/{{../searchChar}}/{{../pageNum}}/{{this.book_id}}">{{this.title}}</a>
     </div>
 </div>
+{{else}}
+<div class="row">
+    <div class="col">
+        <p>No titles found that starts with "{{searchChar}}"</p>
+    </div>
+</div>
 {{/each}}
 <div class="row mt-5">
     <div class="col-8">

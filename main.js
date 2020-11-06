@@ -37,6 +37,8 @@ const SQL_GET_BOOK_BY_ID = 'select * from book2018 where book_id=?;'
 const SQL_GET_COUNT_BY_FIRST_CHAR = 'select count(*) as count from book2018 where title like ?'
 
 //Application code
+app.use(morgan('combined'))
+
 app.get('/', (req, resp) => {
     const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"].map(v => v.toUpperCase());
     const number = [...Array(10).keys()]
@@ -64,7 +66,7 @@ app.get('/:getChar/:pageNum', async (req, resp) => {
         if(pageNum == 1) {
             hasPrevPage = false
         }
-        if(pageNum == totalPages) {
+        if((pageNum == totalPages) || totalPages == 0) {
             hasNextPage = false
         }
         const result = await conn.query(SQL_GET_TITLES_AND_ID_BY_FIRST_CHAR, [`${searchChar.toLowerCase()}%`, offset])
