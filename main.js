@@ -165,7 +165,10 @@ app.get('/:getChar/:pageNum/:bookid/reviews', async (req, resp) => {
         resp.type('text/html')
         resp.render('book_reviews', {
             copyrightString,
-            reviews
+            reviews,
+            searchChar,
+            pageNum,
+            bookid
         })
     }
     catch(e) {
